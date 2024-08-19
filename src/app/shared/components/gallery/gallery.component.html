@@ -1,0 +1,77 @@
+<div class="pb-3">
+  <div
+    [class.img-grid-container-first]="i % 2 === 0"
+    [class.img-grid-container-second]="i % 2 === 1"
+    *ngFor="let images of imageGrids; let i = index"
+  >
+    <div
+      *ngFor="let image of images; let j = index"
+      [class]="'rounded ' + 'div' + (j + 1)"
+      [class.shadow]="image.url || image.file || utils.isAdmin()"
+    >
+      <div
+        class="img-placeholder position-relative rounded h-100"
+        [class.frosted]="utils.isAdmin()"
+      >
+        <img
+          *ngIf="image?.url"
+          [src]="image?.url"
+          alt="colorImg"
+          class="rounded"
+        />
+
+        <ng-container *ngIf="utils.isAdmin()">
+          <input
+            type="file"
+            class="hidden-file-upload"
+            accept="image/*"
+            (change)="fileUploaded($event, image)"
+            (fileDropped)="fileUploaded($event, image)"
+            appDragAndDrop
+            #fileUpload
+          />
+          <button
+            type="button"
+            class="add-image-btn w-100 h-100 rounded"
+            *ngIf="utils.isAdmin() && !(image.url || image.file)"
+            (click)="fileUpload?.click()"
+          >
+            <i class="bi bi-image fs-1"></i>
+          </button>
+          <button
+            *ngIf="utils.isAdmin() && (image.url || image.file)"
+            type="button"
+            class="btn btn-light edit-btn shadow"
+            (click)="fileUpload.click()"
+          >
+            <i class="bi bi-image"></i>
+          </button>
+
+          <button
+            *ngIf="utils.isAdmin() && (image.url || image.file)"
+            type="button"
+            class="btn btn-danger delete-btn shadow"
+            (click)="deleteImage(image)"
+          >
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="add-grid-container shadow rounded p-3 mb-3 w-100"
+    (click)="addGrid()"
+    [disabled]="hasEmptyImages()"
+    *ngIf="utils.isAdmin()"
+  >
+    <i class="bi bi-plus-square-fill fs-1"></i>
+  </button>
+
+  <div class="float-end pb-3" *ngIf="utils.isAdmin()">
+    <button type="button" class="btn btn-primary" (click)="saveImages()">
+      Save
+    </button>
+  </div>
+</div>

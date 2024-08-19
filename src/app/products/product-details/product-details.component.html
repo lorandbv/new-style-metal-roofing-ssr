@@ -1,0 +1,71 @@
+<div *ngIf="product" class="product-details-container">
+  <h1 class="display-4 mb-3 text-white">{{ product?.name }}</h1>
+  <div class="images-container d-flex flex-column flex-md-row">
+    <div class="left-container mb-3 me-md-4">
+      <div>
+        <img
+          [src]="selectedColor?.img"
+          alt="productImg"
+          class="rounded shadow product-image"
+        />
+        <div class="d-flex mt-2">
+          <p class="fw-semibold me-2 text-white">
+            {{ selectedColor?.materialName }}
+          </p>
+          <p class="text-white">{{ selectedColor?.colorName }}</p>
+        </div>
+      </div>
+
+      <ng-container *ngIf="product?.info">
+        <h2 class="display-6 text-white">Info</h2>
+        <p class="lead text-white">{{ product?.info }}</p>
+      </ng-container>
+    </div>
+
+    <div class="product-details">
+      <ng-container *ngIf="product?.description">
+        <h4 class="h4 fw-light text-white">Description</h4>
+        <p class="lead text-white">
+          {{ product?.description }}
+        </p>
+      </ng-container>
+
+      <div
+        *ngFor="
+          let material of product?.materials
+            | keyvalue
+            | orderBy : 'value' : 'name'
+        "
+        class="mb-3"
+      >
+        <h4 class="h4 fw-light text-white">
+          {{ material?.value?.name | titlecase }}
+        </h4>
+        <div class="mini-images">
+          <div
+            *ngFor="
+              let color of material?.value?.colors
+                | keyvalue
+                | orderBy : 'value' : 'name'
+            "
+            class="position-relative me-2"
+          >
+            <img
+              [src]="color?.value?.img"
+              (click)="
+                selectColor(
+                  color?.value?.img,
+                  material?.value?.name,
+                  color?.value?.name
+                )
+              "
+              alt="productImg"
+              class="rounded shadow"
+            />
+            <p class="color-name">{{ color?.value?.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

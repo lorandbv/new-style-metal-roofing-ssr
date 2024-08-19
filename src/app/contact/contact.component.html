@@ -1,0 +1,104 @@
+<h2 class="display-4 text-white">Contact us!</h2>
+
+<div class="contacts-container">
+  <div class="logo-container text-center">
+    <img
+      src="/logo-no-bg.png"
+      class="logo mb-3 rounded logo-backdrop"
+      alt="New Style Metal Roofing Logo"
+    />
+    <div>
+      <p class="text-white lead mb-0">New Style Metal Roofing LLC</p>
+      <a href="tel:330-990-8732" class="nav-link text-white">
+        <i class="bi bi-telephone-fill me-2"></i>330-990-8732</a
+      >
+      <a
+        href="mailto:newstylemetalroofing&#64;yahoo.com"
+        class="nav-link text-white"
+      >
+        <i class="bi bi-envelope-fill me-2"></i
+        >newstylemetalroofing&#64;yahoo.com</a
+      >
+      <a
+        href="map:https://maps.app.goo.gl/o7YKwwoCA5KLzmFs5"
+        target="_blank"
+        class="nav-link text-white"
+      >
+        <i class="bi bi-geo-alt-fill me-2"></i>4400B Lincoln Way East Massillon
+        OH 44646</a
+      >
+    </div>
+  </div>
+  <form [formGroup]="contactForm">
+    <div class="mb-2">
+      <label for="name" class="form-label"
+        >Name<span class="required-hint">*</span></label
+      >
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        placeholder="Name"
+        formControlName="name"
+        aria-label="Name"
+        autocomplete="given-name"
+      />
+    </div>
+
+    <div class="mb-2">
+      <label for="email" class="form-label"
+        >Email<span class="required-hint">*</span></label
+      >
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        placeholder="Email"
+        formControlName="email"
+        aria-label="Email"
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="mb-2">
+      <label for="phone" class="form-label"
+        >Phone<span class="required-hint">*</span></label
+      >
+      <input
+        type="tel"
+        id="phone"
+        class="form-control"
+        formControlName="phone"
+        placeholder="Phone"
+        aria-label="Phone"
+        autocomplete="tel"
+      />
+    </div>
+
+    <div>
+      <label for="message" class="form-label"
+        >Message<span class="required-hint">*</span></label
+      >
+      <textarea
+        type="text"
+        id="message"
+        class="form-control"
+        formControlName="message"
+        placeholder="Type your message here"
+        aria-label="Message"
+        rows="5"
+      ></textarea>
+    </div>
+
+    <div class="float-end py-3">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [disabled]="contactForm.invalid"
+        (click)="submitContactForm()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

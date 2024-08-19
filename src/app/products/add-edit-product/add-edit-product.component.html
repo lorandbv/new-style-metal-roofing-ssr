@@ -1,0 +1,125 @@
+<div>
+  <h1 class="display-4 mb-3 text-white">
+    {{ product ? "Edit product" : "Add new product" }}
+  </h1>
+  <div class="mb-3">
+    <label for="name" class="form-label text-white"
+      >Product Name<span class="required-hint">*</span></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      placeholder="eg: product name"
+      [(ngModel)]="productName"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label text-white">Description</label>
+    <input
+      type="text"
+      class="form-control"
+      id="description"
+      placeholder="eg: description"
+      [(ngModel)]="description"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="info" class="form-label text-white">Information</label>
+    <input
+      type="text"
+      class="form-control"
+      id="info"
+      placeholder="eg: information"
+      [(ngModel)]="info"
+    />
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h3 class="h3 fw-light mb-0 text-white">Materials</h3>
+    <button
+      type="button"
+      class="btn btn-outline-light"
+      (click)="addMaterial()"
+      [disabled]="materials?.[materials.length - 1]?.name === ''"
+    >
+      <i class="bi bi-plus-circle me-2"></i>Add Material
+    </button>
+  </div>
+
+  <div
+    class="card mb-3"
+    *ngFor="let material of materials; let last = last; let index = index"
+  >
+    <button
+      type="button"
+      class="btn btn-outline-danger delete-btn"
+      (click)="deleteMaterial(index)"
+      [disabled]="last && materials?.length === 1"
+    >
+      <i class="bi bi-trash-fill"></i>
+    </button>
+    <div class="card-body">
+      <div>
+        <label for="materialName" class="form-label text-white"
+          >Material Name<span class="required-hint">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="materialName"
+          placeholder="eg: material name"
+          [(ngModel)]="material.name"
+          [class.is-invalid]="isDuplicated(materials, material?.name)"
+        />
+      </div>
+
+      <div class="mt-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h4 class="h4 fw-light mb-0 text-white">Colors</h4>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            (click)="addColor(material, 'color-container-' + index)"
+            [disabled]="
+              !(material?.colors)[material?.colors?.length - 1]?.name ||
+              (!(material?.colors)[material?.colors?.length - 1]?.imgFile &&
+                !(material?.colors)[material?.colors?.length - 1]?.img)
+            "
+          >
+            <i class="bi bi-plus-circle me-2"></i>Add Color
+          </button>
+        </div>
+        <div
+          class="d-flex align-items-center overflow-x-auto"
+          [id]="'color-container-' + index"
+        >
+          <app-add-color
+            [class.me-2]="!last"
+            *ngFor="let color of material.colors; let last = last"
+            (onFileUpload)="addFile(color, $event)"
+            (onDelete)="deleteColor(material, color)"
+            (onNameChange)="addName(color, $event)"
+            [isOnlyOne]="last && material?.colors?.length === 1"
+            [isDuplicated]="isDuplicated(material.colors, color?.name)"
+            [file]="color?.img"
+            [name]="color?.name"
+            [isLast]="last"
+            [index]="index"
+          ></app-add-color>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="float-end pb-3">
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="isSaveDisabled || !productName || hasIncompleteData()"
+      (click)="saveProduct()"
+    >
+      Save
+    </button>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+.img-grid-container-first {
+  .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .div2 {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .div3 {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .div4 {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  .div5 {
+    grid-area: 1 / 3 / 3 / 5;
+  }
+
+  .div1,
+  .div2,
+  .div3,
+  .div4 {
+    height: 250px;
+  }
+
+  .div5 {
+    height: 510px;
+  }
+}
+
+.img-grid-container-second {
+  .div1 {
+    grid-area: 1 / 1 / 3 / 3;
+  }
+  .div2 {
+    grid-area: 1 / 3 / 2 / 4;
+  }
+  .div3 {
+    grid-area: 1 / 4 / 2 / 5;
+  }
+  .div4 {
+    grid-area: 2 / 3 / 3 / 4;
+  }
+  .div5 {
+    grid-area: 2 / 4 / 3 / 5;
+  }
+
+  .div1 {
+    height: 510px;
+  }
+
+  .div2,
+  .div3,
+  .div4,
+  .div5 {
+    height: 250px;
+  }
+}
+
+.img-grid-container-first,
+.img-grid-container-second {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .div1 {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    .div2 {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+    .div3 {
+      grid-area: 2 / 1 / 3 / 3;
+    }
+    .div4 {
+      grid-area: 3 / 1 / 4 / 2;
+    }
+    .div5 {
+      grid-area: 3 / 2 / 4 / 3;
+    }
+
+    .div1,
+    .div2,
+    .div3,
+    .div4,
+    .div5 {
+      height: 300px;
+    }
+  }
+}
+
+.img-placeholder {
+  height: 300px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.025) !important;
+    }
+  }
+
+  &.frosted {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+}
+
+.add-image-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  i {
+    color: white;
+  }
+}
+
+.edit-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.add-grid-container {
+  text-align: center;
+  i {
+    color: white;
+  }
+
+  border: 1px dashed white;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(4px) !important;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-box-shadow: inset 0px 0px 100px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: inset 0px 0px 100px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px 0px 100px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  transition: all 0.3s ease-in-out;
+}

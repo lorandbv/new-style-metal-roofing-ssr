@@ -1,0 +1,57 @@
+<h1 class="display-4 mb-3 text-white">Products</h1>
+
+<div
+  class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 mb-3 pb-4"
+>
+  <div class="col" *ngFor="let product of productsService.products">
+    <div class="card h-100" [routerLink]="product.name.replaceAll(' ', '-')">
+      <button
+        *ngIf="utils.isAdmin()"
+        type="button"
+        class="btn btn-light edit-btn"
+        (click)="editProduct($event, product)"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#editProductCanvas"
+      >
+        <i class="bi bi-pencil-fill"></i>
+      </button>
+
+      <button
+        *ngIf="utils.isAdmin()"
+        type="button"
+        class="btn btn-danger delete-btn"
+        (click)="productsService.deleteProduct($event, product?.id)"
+      >
+        <i class="bi bi-trash-fill"></i>
+      </button>
+      <img
+        [src]="product?.materials?.[0]?.colors?.[0]?.img"
+        class="card-img-top"
+        alt="productImage"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" id="editProductCanvas">
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close"
+  ></button>
+  <div class="offcanvas-body">
+    <app-add-edit-product [product]="selectedProduct"></app-add-edit-product>
+  </div>
+</div>
+
+<div
+  *ngIf="!productsService?.products.length && !utils.isLoading()"
+  class="text-white"
+>
+  No products available.
+</div>

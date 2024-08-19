@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "new-style-metal-roofing-ssr": "cleanzoh-testing",
+    "default": "cleanzoh-testing"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

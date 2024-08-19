@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-body">
+    <button
+      type="button"
+      class="btn btn-outline-danger delete-btn"
+      (click)="onDelete.next()"
+      [disabled]="isOnlyOne"
+    >
+      <i class="bi bi-trash-fill"></i>
+    </button>
+    <div>
+      <label for="colorName" class="form-label text-white"
+        >Color Name<span class="required-hint">*</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        [id]="isLast ? 'color-container-' + index + '-last-input' : 'colorName'"
+        placeholder="eg: color name"
+        [(ngModel)]="name"
+        (ngModelChange)="onNameChange.next(name)"
+        [class.is-invalid]="isDuplicated"
+      />
+    </div>
+  </div>
+  <div class="img-placeholder position-relative" [class.has-image]="file">
+    <input
+      type="file"
+      class="hidden-file-upload"
+      accept="image/*"
+      #fileUpload
+      (change)="fileUploaded($event)"
+      (fileDropped)="fileUploaded($event)"
+      appDragAndDrop
+    />
+    <button
+      type="button"
+      class="add-image-btn btn btn-secondary w-100 rounded-top-0"
+      (click)="fileUpload.click()"
+      *ngIf="!file"
+    >
+      <i class="bi bi-image fs-1"></i>
+    </button>
+    <img
+      *ngIf="file"
+      [src]="file"
+      alt="colorImg"
+      class="rounded-top-0 rounded-bottom-4"
+    />
+    <button
+      type="button"
+      class="btn btn-secondary change-image-btn"
+      *ngIf="file"
+      (click)="fileUpload.click()"
+    >
+      <i class="bi bi-image"></i>
+    </button>
+  </div>
+</div>

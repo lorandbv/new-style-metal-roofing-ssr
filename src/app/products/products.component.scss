@@ -1,0 +1,38 @@
+.card {
+  cursor: pointer;
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .card-body {
+    color: white;
+  }
+}
+
+.edit-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.offcanvas {
+  width: 1000px;
+  background: transparent;
+  backdrop-filter: blur(50px) !important;
+
+  .btn-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  }
+}
