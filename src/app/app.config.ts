@@ -28,13 +28,12 @@ export const appConfig: ApplicationConfig = {
     ),
     provideFirebaseApp(() =>
       initializeApp({
-        projectId: 'cleanzoh-testing',
-        appId: '1:862062689993:web:03dd5b072f734339389718',
-        databaseURL: 'https://cleanzoh-testing-default-rtdb.firebaseio.com',
-        storageBucket: 'cleanzoh-testing.appspot.com',
-        apiKey: 'AIzaSyA9QE57J5n7FMl8JHk0IpFBbWWlwUz4y64',
-        authDomain: 'cleanzoh-testing.firebaseapp.com',
-        messagingSenderId: '862062689993',
+        projectId: 'newstylemetalroofing-staging',
+        appId: '1:1008021755471:web:13c099d9fb59721cdafc3a',
+        storageBucket: 'newstylemetalroofing-staging.appspot.com',
+        apiKey: 'AIzaSyBQYdFYCT_ahGbKA7sYdLDNPRVnVwzrck0',
+        authDomain: 'newstylemetalroofing-staging.firebaseapp.com',
+        messagingSenderId: '1008021755471',
         measurementId: 'G-XRY15EFMLB',
       })
     ),
