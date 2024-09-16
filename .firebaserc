@@ -1,7 +1,7 @@
 {
   "projects": {
-    "new-style-metal-roofing-ssr": "cleanzoh-testing",
-    "default": "cleanzoh-testing"
+    "new-style-metal-roofing-ssr": "newstylemetalroofing-staging",
+    "default": "newstylemetalroofing-staging"
   },
   "targets": {},
   "etags": {},
