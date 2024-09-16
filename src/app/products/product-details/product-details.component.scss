@@ -20,14 +20,19 @@
   }
 }
 
+.left-container,
 .product-details {
-  flex: 1.5;
-  overflow: auto;
-  padding-bottom: 20px;
-
   @media screen and (min-width: 768px) {
     height: calc(100vh - 150px - 45px);
   }
+
+  overflow: auto;
+  padding-bottom: 20px;
+}
+
+.product-details {
+  flex: 1.5;
+  overflow: auto;
 
   @media screen and (min-width: 768px) {
     max-width: 60%;
